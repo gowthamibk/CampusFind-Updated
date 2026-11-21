@@ -1,3 +1,4 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -5,8 +6,19 @@ require("dotenv").config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// CORS Configuration
+app.use(cors({
+    origin: [
+        "https://campusfind-frontend-alpha.vercel.app",
+        "https://campusfind-frontend-alpha.vercel.app/",
+        "http://localhost:3000",
+        "http://localhost:5500"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+}));
+
 app.use(express.json());
 
 // Home route
